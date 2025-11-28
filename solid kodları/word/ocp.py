@@ -1,3 +1,4 @@
+#Yanlış Kullanım
 class PaymentProcessor:
     def pay(self, method, amount):
         if method == "credit":
@@ -6,7 +7,7 @@ class PaymentProcessor:
             print("PayPal ile ödeme:", amount)
 # Burada her yeni ödeme yöntemi için mevcut kodu değiştirmek gerekiyor → OCP ihlali
 
-
+#Doğru Kullanım
 class PaymentMethod:
     def pay(self, amount):
         raise NotImplementedError
@@ -22,7 +23,11 @@ class PayPal(PaymentMethod):
 class Bitcoin(PaymentMethod):
     def pay(self, amount):
         print("Bitcoin ile ödeme:", amount)
-# Yeni ödeme yöntemi eklemek için sadece yeni sınıf yazılır → OCP uyumlu
 
-payment = CreditCard()
-payment.pay(100)
+# Test
+payments = [CreditCard(), PayPal(), Bitcoin()]
+for p in payments:
+    p.pay(100)
+
+
+
